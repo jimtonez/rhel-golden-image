@@ -25,7 +25,6 @@ jobs:
       - name: Install ansible roles
         run: |
           ansible-galaxy install RedHatOfficial.rhel9_cis
-          ansible-playbook --version
       
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
