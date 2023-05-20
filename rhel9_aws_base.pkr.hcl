@@ -29,7 +29,10 @@ source "amazon-ebs" "rhel9_base" {
     most_recent = true
     owners      = ["amazon"]
   }
-  ssh_username = "ec2-user"
+  ssh_username         = "ec2-user"
+  ssh_interface        = "session_manager"
+  communicator         = "ssh"
+  iam_instance_profile = "myinstanceprofile"
 }
 
 build {
