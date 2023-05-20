@@ -6,9 +6,7 @@ on:
       - dev
 
 env:
-  PRODUCT_VERSION: "1.6.0"
-  AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
-  AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
+  PRODUCT_VERSION: "latest"
   AWS_REGION: "us-east-2"
   AMI_FILTER: "ami-0858136e05d24c9c8"
   AMI_PREFIX: "rhel-9-base"
@@ -19,28 +17,48 @@ env:
 jobs:
   packer:
     runs-on: ubuntu-latest
-    name: Run Packer
+    name: Build RHEL9 AMI
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install packer dependencies
-        run: |
-          pip install -r requirements.txt
-          curl -k https://releases.hashicorp.com/packer/1.6.0/packer_1.6.0_linux_amd64.zip --output packer.zip
-          unzip packer.zip && mv -f packer /usr/local/bin
+      # - name: Install packer dependencies
+      #   run: |
+      #     pip install -r requirements.txt
+      #     curl -k https://releases.hashicorp.com/packer/1.6.0/packer_1.6.0_linux_amd64.zip --output packer.zip
+      #     unzip packer.zip && mv -f packer /usr/local/bin
 
       - name: Install ansible roles
         run: |
           ansible-galaxy install RedHatOfficial.rhel9_cis
+      
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: us-east-2
 
-      # - name: Run `packer init`
-      #   id: init
-      #   # run: "packer init ./rhel9_aws_base.json"
+      # Initialize Packer templates
+      - name: Initialize Packer Template
+        uses: hashicorp/packer-github-actions@master
+        with:
+          command: init
 
-      # - name: Run `packer validate`
-      #   id: validate
-      #   run: "packer validate ./rhel9_aws_base.json"
+      # validate templates
+      - name: Validate Template
+        uses: hashicorp/packer-github-actions@master
+        with:
+          command: validate
+          arguments: -syntax-only
+          target: rhel9_aws_base.pkr.hcl
 
+      # build artifact
       - name: Build Artifact
-        run: packer build -on-error=abort ./rhel9_aws_base.json
+        uses: hashicorp/packer-github-actions@master
+        with:
+          command: build
+          arguments: "-color=false -on-error=abort"
+          target: rhel9_aws_base.pkr.hcl
+        env:
+          PACKER_LOG: 1
