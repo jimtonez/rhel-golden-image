@@ -1,5 +1,5 @@
 {
     "ami_filter": "RHEL_HA-9.2.0_HVM-*-x86_64-41-Hourly2-GP2",
     "ami_prefix": "rhel-9-base",
-    "os_version": "Amazon Linux Base AMI"
+    "os_version": "Red Hat Enterprise Linux 9"
 }
