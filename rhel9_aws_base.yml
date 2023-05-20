@@ -1,4 +1,4 @@
-- hosts: localhost
+- hosts: all
   become: true
   roles:
      - { role: RedHatOfficial.rhel9_cis }
