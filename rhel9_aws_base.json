@@ -9,7 +9,7 @@
     "provisioners": [
       {
         "type": "ansible",
-        "playbook_file": "rhel9_base.yml",
+        "playbook_file": "rhel9_aws_base.yml",
         "user": "ec2-user"
       }
     ],
