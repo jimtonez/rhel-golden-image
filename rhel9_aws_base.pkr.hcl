@@ -31,10 +31,11 @@ source "amazon-ebs" "rhel9_base" {
     most_recent = true
     owners      = ["amazon"]
   }
-  ssh_username         = "ec2-user"
-  ssh_interface        = "session_manager"
-  communicator         = "ssh"
-  iam_instance_profile = "PackerAMIRole"
+  ssh_username            = "ec2-user"
+//   temporary_key_pair_type = "ed25519"
+  ssh_interface           = "session_manager"
+  communicator            = "ssh"
+//   iam_instance_profile    = "PackerAMIRole"
 }
 
 build {
