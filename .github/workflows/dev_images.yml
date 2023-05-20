@@ -28,14 +28,13 @@ jobs:
           curl -k https://releases.hashicorp.com/packer/1.6.0/packer_1.6.0_linux_amd64.zip --output packer.zip
           unzip packer.zip && mv -f packer /usr/local/bin
 
-      - name: Run `packer init`
-        id: init
-        # run: "packer init ./rhel9_aws_base.json"
-        run: "packer --version"
+      # - name: Run `packer init`
+      #   id: init
+      #   # run: "packer init ./rhel9_aws_base.json"
 
-      - name: Run `packer validate`
-        id: validate
-        run: "packer validate ./rhel9_aws_base.json"
+      # - name: Run `packer validate`
+      #   id: validate
+      #   run: "packer validate ./rhel9_aws_base.json"
 
       - name: Build Artifact
         run: packer build -on-error=abort ./rhel9_aws_base.json
