@@ -6,7 +6,7 @@ on:
       - dev
 
 env:
-  PRODUCT_VERSION: "1.6"
+  PRODUCT_VERSION: "1.6.0"
 
 jobs:
   packer:
@@ -22,7 +22,8 @@ jobs:
 
       - name: Run `packer init`
         id: init
-        run: "packer init ./rhel9_aws_base.json"
+        # run: "packer init ./rhel9_aws_base.json"
+        run: "packer version
 
       - name: Run `packer validate`
         id: validate
