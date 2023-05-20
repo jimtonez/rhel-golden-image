@@ -37,7 +37,7 @@ source "amazon-ebs" "rhel9_base" {
   session_manager_port    = 22
   temporary_key_pair_type = "ed25519"
   ssh_agent_auth          = false
-  ssh_interface           = "session_manager"
+  ssh_interface           = "public_ip"
   pause_before_ssm        = "2m"
   communicator            = "ssh"
   iam_instance_profile    = "AWSPackerSSMRole"
