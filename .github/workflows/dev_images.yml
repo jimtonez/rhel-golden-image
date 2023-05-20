@@ -10,7 +10,7 @@ env:
   AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
   AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
   AWS_REGION: "us-east-2"
-  AMI_FILTER: "rhel_ha-9.2.0_hvm-20230503-x86_64-41-hourly2-gp2"
+  AMI_FILTER: "ami-0858136e05d24c9c8"
   AMI_PREFIX: "rhel-9-base"
   OS_VERSION: "Red Hat Enterprise Linux 9"
 

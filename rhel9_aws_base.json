@@ -29,7 +29,7 @@
             "architecture": "x86_64",
             "virtualization-type": "hvm",
             "root-device-type": "ebs",
-            "name": "{{ user `ami_filter` }}"
+            "image-id": "{{ user `ami_filter` }}"
           },
           "owners": ["amazon"],
           "most_recent": true
