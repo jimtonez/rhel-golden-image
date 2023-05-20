@@ -1,4 +1,0 @@
-ansible
-awscli
-botocore
-boto3
