@@ -3,3 +3,4 @@ awscli
 botocore
 boto3
 azure-cli
+unzip
