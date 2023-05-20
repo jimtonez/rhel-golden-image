@@ -31,7 +31,7 @@
             "root-device-type": "ebs",
             "name": "{{ user `ami_filter` }}"
           },
-          "owners": ["309956199498"],
+          "owners": ["amazon"],
           "most_recent": true
         },
         "ami_block_device_mappings": [{
