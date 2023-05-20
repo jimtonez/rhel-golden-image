@@ -20,8 +20,7 @@ source "amazon-ebs" "rhel9_base" {
   ami_name      = "${var.ami_prefix}-${local.timestamp}"
   instance_type = "t2.small"
   region        = "us-east-2"
-  subnet_id     = "subnet-07b548e510fbc6e00"
-  vpc_id        = "vpc-0e3737a7d61892856"
+  associate_public_ip_address = true
   source_ami_filter {
     filters = {
       image-id            = "ami-0858136e05d24c9c8"
