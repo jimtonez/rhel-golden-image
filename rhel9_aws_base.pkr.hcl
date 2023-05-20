@@ -60,7 +60,7 @@ build {
     user            = "ec2-user"
     use_proxy       =  false
     extra_arguments = [ 
-        "-vvv",
+        "-vv",
     ]
   }
 

@@ -1,10 +1,12 @@
 - hosts: all
   become: true
   roles:
-     - { role: RedHatOfficial.rhel9_cis, tags: ["bar", "baz"] }
+     - { role: RedHatOfficial.rhel9_cis }
   vars:
     sudo_require_authentication: false
     service_nfs_disabled: false
     service_rpcbind_disabled: false
     socket_file_exists:
       stdout_lines:
+        - "one"
+        - "two"
