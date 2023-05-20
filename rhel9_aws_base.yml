@@ -5,3 +5,4 @@
   vars:
     sudo_require_authentication: false
     service_nfs_disabled: false
+    service_rpcbind_disabled: false
