@@ -52,4 +52,9 @@ build {
       "sudo dnf update -y",
     ]
   }
+
+  provisioner "ansible" {
+    playbook_file = "./rhel9_aws_base.yml"
+    ansible_env_vars = [ "ANSIBLE_HOST_KEY_CHECKING=False", "ANSIBLE_SSH_ARGS='-o ForwardAgent=yes -o ControlMaster=auto -o ControlPersist=60s'", "ANSIBLE_NOCOLOR=True" ]
+  }
 }
