@@ -55,8 +55,8 @@ build {
     ]
   }
 
-  provisioner "ansible" {
-    playbook_file = "./rhel9_aws_base.yml"
-    extra_arguments = [ "-vvvv" ]
-  }
+//   provisioner "ansible" {
+//     playbook_file = "./rhel9_aws_base.yml"
+//     extra_arguments = [ "-vvvv" ]
+//   }
 }
