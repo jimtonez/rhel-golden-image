@@ -1,6 +1,8 @@
 {
     "variables": {
       "aws_region": "{{ env `AWS_REGION` }}",
+      "aws_access_key": "{{ env `AWS_ACCESS_KEY` }}",
+      "aws_secret_key": "{{ env `AWS_SECRET_KEY` }}",
       "ami_filter": "{{ env `AMI_FILTER` }}",
       "ami_prefix": "{{ env `AMI_PREFIX` }}",
       "os_version": "{{ env `OS_VERSION` }}",
@@ -17,10 +19,11 @@
       {
         "type": "amazon-ebs",
         "region": "{{ user `aws_region` }}",
-        "associate_public_ip_address": "true",
+        "access_key": "{{ user `aws_access_key` }}",
+        "secret_key": "{{ user `aws_secret_key` }}",
         "instance_type": "t2.small",
         "ssh_username": "ec2-user",
-        "encrypt_boot": true,
+        "encrypt_boot": false,
         "source_ami_filter": {
           "filters": {
             "architecture": "x86_64",
@@ -36,7 +39,7 @@
           "volume_size": 32,
           "volume_type": "gp2",
           "delete_on_termination": true,
-          "encrypted": true
+          "encrypted": false
         }],
         "force_deregister": true,
         "force_delete_snapshot": true,
