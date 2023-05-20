@@ -46,14 +46,14 @@ build {
     "source.amazon-ebs.rhel9_base"
   ]
 
-  provisioner "shell" {
-    inline = [
-      "echo Provisioning RHEL9 Base AMI",
-      "sudo dnf update -y",
-      "sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm",
-      "sudo dnf install -y ansible",
-    ]
-  }
+//   provisioner "shell" {
+//     inline = [
+//       "echo Provisioning RHEL9 Base AMI",
+//       "sudo dnf update -y",
+//       "sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm",
+//       "sudo dnf install -y ansible",
+//     ]
+//   }
 
   provisioner "ansible" {
     command         = "ansible-playbook"
