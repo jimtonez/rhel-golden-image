@@ -50,6 +50,7 @@ build {
     inline = [
       "echo Provisioning RHEL9 Base AMI",
       "sudo dnf update -y",
+      "sudo systemctl list-unit-files nfs-server.socket"
     //   "sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm",
     //   "sudo dnf install -y ansible",
     ]
@@ -59,7 +60,9 @@ build {
     playbook_file   = "./rhel9_aws_base.yml"
     user            = "ec2-user"
     use_proxy       =  false
-    extra_arguments = [ "-vv" ]
+    extra_arguments = [ 
+        "-vvv",
+    ]
   }
 
 }
