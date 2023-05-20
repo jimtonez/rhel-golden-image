@@ -26,7 +26,7 @@
         "subnet_id": "{{ user `ami_subnet_id` }}",
         "instance_type": "t2.small",
         "ssh_username": "ec2-user",
-        "encrypt_boot": false,
+        "encrypt_boot": true,
         "source_ami_filter": {
           "filters": {
             "architecture": "x86_64",
@@ -42,7 +42,7 @@
           "volume_size": 32,
           "volume_type": "gp2",
           "delete_on_termination": true,
-          "encrypted": false
+          "encrypted": true
         }],
         "force_deregister": true,
         "force_delete_snapshot": true,
