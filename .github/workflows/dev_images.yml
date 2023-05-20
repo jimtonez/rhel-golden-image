@@ -16,11 +16,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup `packer`
-        uses: hashicorp/setup-packer@main
-        id: setup
-        with:
-          version: ${{ env.PRODUCT_VERSION }}
+      - name: Determine app name
+        run: |
+          pip install -r requirements.txt
 
       - name: Run `packer init`
         id: init
