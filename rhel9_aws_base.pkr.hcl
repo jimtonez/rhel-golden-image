@@ -59,7 +59,7 @@ build {
     playbook_file   = "./rhel9_aws_base.yml"
     user            = "ec2-user"
     use_proxy       =  false
-    extra_arguments = [ "-vvv" ]
+    extra_arguments = [ "-vv" ]
   }
 
 }

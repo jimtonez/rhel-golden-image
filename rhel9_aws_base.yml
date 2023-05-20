@@ -2,3 +2,5 @@
   become: true
   roles:
      - { role: RedHatOfficial.rhel9_cis }
+  vars:
+    sudo_require_authentication: false
