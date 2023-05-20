@@ -36,6 +36,7 @@ source "amazon-ebs" "rhel9_base" {
   ssh_port                = 22
   session_manager_port    = 22
   temporary_key_pair_type = "ed25519"
+  ssh_agent_auth          = false
   ssh_interface           = "session_manager"
   pause_before_ssm        = "2m"
   communicator            = "ssh"
