@@ -1,0 +1,34 @@
+name: Build Dev Images
+
+on:
+  pull_request:
+    branches:
+      - dev
+
+env:
+  PRODUCT_VERSION: "latest"
+
+jobs:
+  packer:
+    runs-on: ubuntu-latest
+    name: Run Packer
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup `packer`
+        uses: hashicorp/setup-packer@main
+        id: setup
+        with:
+          version: ${{ env.PRODUCT_VERSION }}
+
+      - name: Run `packer init`
+        id: init
+        run: "packer init ./rhel9_aws_base.json"
+
+      - name: Run `packer validate`
+        id: validate
+        run: "packer validate ./rhel9_aws_base.json"
+
+      - name: Build Artifact
+        run: packer build -on-error=abort ./rhel9_aws_base.json
