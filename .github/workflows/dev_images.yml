@@ -23,7 +23,7 @@ jobs:
       - name: Run `packer init`
         id: init
         # run: "packer init ./rhel9_aws_base.json"
-        run: "packer version
+        run: "packer --version"
 
       - name: Run `packer validate`
         id: validate
