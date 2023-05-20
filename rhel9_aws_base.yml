@@ -6,4 +6,4 @@
     sudo_require_authentication: false
     service_nfs_disabled: false
     service_rpcbind_disabled: false
-    socket_file_exists.stdout_lines: []
+    socket_file_exists.stdout_lines: ""
