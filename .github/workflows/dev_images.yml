@@ -22,9 +22,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # - name: Install packer dependencies
-      #   run: |
-      #     pip install -r requirements.txt
+      - name: Install packer dependencies
+        run: |
+          pip install -r requirements.txt
       #     curl -k https://releases.hashicorp.com/packer/1.6.0/packer_1.6.0_linux_amd64.zip --output packer.zip
       #     unzip packer.zip && mv -f packer /usr/local/bin
 
