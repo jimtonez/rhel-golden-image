@@ -21,7 +21,6 @@
         "instance_type": "t2.small",
         "ssh_username": "ec2-user",
         "encrypt_boot": true,
-        "temporary_security_group_source_cidr": "{{ user `secure_ip` }}",
         "source_ami_filter": {
           "filters": {
             "architecture": "x86_64",
