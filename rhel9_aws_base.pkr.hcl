@@ -50,7 +50,6 @@ build {
     inline = [
       "echo Provisioning RHEL9 Base AMI",
       "sudo dnf update -y",
-      "sudo systemctl list-unit-files nfs-server.socket"
     //   "sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm",
     //   "sudo dnf install -y ansible",
     ]
