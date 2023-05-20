@@ -24,6 +24,7 @@
         "access_key": "{{ user `aws_access_key` }}",
         "secret_key": "{{ user `aws_secret_key` }}",
         "subnet_id": "{{ user `ami_subnet_id` }}",
+        "associate_public_ip_address": "true",
         "instance_type": "t2.small",
         "ssh_username": "ec2-user",
         "encrypt_boot": true,

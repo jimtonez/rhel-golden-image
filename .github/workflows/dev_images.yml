@@ -12,8 +12,8 @@ env:
   AWS_REGION: "us-east-2"
   AMI_FILTER: "ami-0858136e05d24c9c8"
   AMI_PREFIX: "rhel-9-base"
-  AMI_SUBNET_ID: "subnet-0ca1c2ae0cb29eb88"
-  AMI_VPC_ID: "vpc-01c4c8baeaef8e441"
+  AMI_SUBNET_ID: "subnet-07b548e510fbc6e00"
+  AMI_VPC_ID: "vpc-0e3737a7d61892856"
   OS_VERSION: "Red Hat Enterprise Linux 9"
 
 jobs:
