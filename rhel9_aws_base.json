@@ -6,7 +6,9 @@
       "ami_filter": "{{ env `AMI_FILTER` }}",
       "ami_prefix": "{{ env `AMI_PREFIX` }}",
       "os_version": "{{ env `OS_VERSION` }}",
-      "secure_ip": "{{ env `SECURE_IP` }}"
+      "secure_ip": "{{ env `SECURE_IP` }}",
+      "ami_subnet_id": "{{ env `AMI_SUBNET_ID` }}",
+      "ami_vpc_id": "{{ env `AMI_VPC_ID` }}"
     },
     "provisioners": [
       {
@@ -21,6 +23,7 @@
         "region": "{{ user `aws_region` }}",
         "access_key": "{{ user `aws_access_key` }}",
         "secret_key": "{{ user `aws_secret_key` }}",
+        "subnet_id": "{{ user `ami_subnet_id` }}",
         "instance_type": "t2.small",
         "ssh_username": "ec2-user",
         "encrypt_boot": false,
