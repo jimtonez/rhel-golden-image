@@ -33,10 +33,7 @@ source "amazon-ebs" "rhel9_base" {
   }
   security_group_id       = "sg-0398f640773fcbae0"
   ssh_username            = "ec2-user"
-  ssh_port                = 22
-  session_manager_port    = 22
   temporary_key_pair_type = "ed25519"
-  ssh_agent_auth          = false
   ssh_interface           = "public_ip"
   pause_before_ssm        = "2m"
   communicator            = "ssh"
