@@ -28,6 +28,11 @@ jobs:
           curl -k https://releases.hashicorp.com/packer/1.6.0/packer_1.6.0_linux_amd64.zip --output packer.zip
           unzip packer.zip && mv -f packer /usr/local/bin
 
+      - name: Install ansible roles
+        run: |
+          ansible-galaxy install RedHatOfficial.rhel9_cis
+          ls -al
+
       # - name: Run `packer init`
       #   id: init
       #   # run: "packer init ./rhel9_aws_base.json"
