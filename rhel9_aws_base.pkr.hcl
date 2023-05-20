@@ -20,7 +20,8 @@ source "amazon-ebs" "rhel9_base" {
   ami_name      = "${var.ami_prefix}-${local.timestamp}"
   instance_type = "t2.small"
   region        = "us-east-2"
-  associate_public_ip_address = true
+  subnet_id     = "subnet-07b548e510fbc6e00"
+  vpc_id        = "vpc-0e3737a7d61892856"
   source_ami_filter {
     filters = {
       image-id            = "ami-0858136e05d24c9c8"
@@ -31,6 +32,7 @@ source "amazon-ebs" "rhel9_base" {
     owners      = ["amazon"]
   }
   ssh_username            = "ec2-user"
+  ssh_port                = 22
   temporary_key_pair_type = "ed25519"
   ssh_interface           = "session_manager"
   communicator            = "ssh"
