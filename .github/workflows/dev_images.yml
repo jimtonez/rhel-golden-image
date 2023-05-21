@@ -32,21 +32,22 @@ jobs:
         run: |
           ansible-galaxy install RedHatOfficial.rhel9_cis
           sed -i '35724d' /home/runner/.ansible/roles/RedHatOfficial.rhel9_cis/tasks/main.yml
+          cat /home/runner/.ansible/roles/RedHatOfficial.rhel9_cis/tasks/main.yml
       
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: us-east-2
+      # - name: Configure AWS Credentials
+      #   uses: aws-actions/configure-aws-credentials@v1
+      #   with:
+      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+      #     aws-region: us-east-2
 
-      - name: Run `packer init`
-        id: init
-        run: "packer init ./rhel9_aws_base.pkr.hcl"
+      # - name: Run `packer init`
+      #   id: init
+      #   run: "packer init ./rhel9_aws_base.pkr.hcl"
 
-      - name: Run `packer validate`
-        id: validate
-        run: "packer validate ./rhel9_aws_base.pkr.hcl"
+      # - name: Run `packer validate`
+      #   id: validate
+      #   run: "packer validate ./rhel9_aws_base.pkr.hcl"
 
-      - name: Build Artifact
-        run: packer build -on-error=abort ./rhel9_aws_base.pkr.hcl
+      # - name: Build Artifact
+      #   run: packer build -on-error=abort ./rhel9_aws_base.pkr.hcl
