@@ -31,7 +31,8 @@ jobs:
       - name: Install ansible roles
         run: |
           ansible-galaxy install RedHatOfficial.rhel9_cis
-          sed -i '35724d' /home/runner/.ansible/roles/RedHatOfficial.rhel9_cis/tasks/main.yml
+          sed '/- '"autofs.socket" in socket_file_exists.stdout_lines[1]'/d' /home/runner/.ansible/roles/RedHatOfficial.rhel9_cis/tasks/main.yml
+          sed '/- '"nfs-server.socket" in socket_file_exists.stdout_lines[1]'/d' /home/runner/.ansible/roles/RedHatOfficial.rhel9_cis/tasks/main.yml
           cat /home/runner/.ansible/roles/RedHatOfficial.rhel9_cis/tasks/main.yml
       
       # - name: Configure AWS Credentials
