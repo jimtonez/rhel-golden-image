@@ -28,11 +28,11 @@ jobs:
           curl -k https://releases.hashicorp.com/packer/1.8.7/packer_1.8.7_linux_amd64.zip --output packer.zip
           unzip packer.zip && mv -f packer /usr/local/bin
 
-# sed -i '/socket_file_exists.stdout_lines/d' /home/runner/.ansible/roles/RedHatOfficial.rhel9_cis/tasks/main.yml
-
       - name: Install ansible roles
         run: |
           ansible-galaxy install RedHatOfficial.rhel9_cis
+          sed -i '24908,24935d' /home/runner/.ansible/roles/RedHatOfficial.rhel9_cis/tasks/main.yml
+          sed -i '/socket_file_exists.stdout_lines/d' /home/runner/.ansible/roles/RedHatOfficial.rhel9_cis/tasks/main.yml
           cat /home/runner/.ansible/roles/RedHatOfficial.rhel9_cis/tasks/main.yml
       
       # - name: Configure AWS Credentials
