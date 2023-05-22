@@ -50,8 +50,8 @@ build {
     inline = [
       "echo Provisioning RHEL9 Base AMI",
       "sudo dnf update -y",
-      "sudo dnf install -y autofs",
-      "sudo systemctl enable --now autofs"
+      // "sudo dnf install -y autofs",
+      // "sudo systemctl enable --now autofs"
     ]
   }
 
@@ -61,8 +61,6 @@ build {
     use_proxy       =  false
     extra_arguments = [ 
         "-vv",
-        "--skip-tags",
-        "service_nfs_disabled"
     ]
   }
 
