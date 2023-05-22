@@ -49,9 +49,7 @@ build {
   provisioner "shell" {
     inline = [
       "echo Provisioning RHEL9 Base AMI",
-      "sudo dnf update -y",
-      // "sudo dnf install -y autofs",
-      // "sudo systemctl enable --now autofs"
+      "sudo dnf update -y"
     ]
   }
 
