@@ -17,6 +17,21 @@ variable "aws_region" {
   default = "us-east-2"
 }
 
+variable "ami_filter" {
+  type    = string
+  default = ""
+}
+
+variable "ami_subnet_id" {
+  type    = string
+  default = ""
+}
+
+variable "ami_vpc_id" {
+  type    = string
+  default = ""
+}
+
 locals {
   timestamp = regex_replace(timestamp(), "[- TZ:]", "")
 }
