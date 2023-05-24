@@ -12,7 +12,7 @@ variable "ami_prefix" {
   default = "rhel-9-base"
 }
 
-variable "ami_region" {
+variable "aws_region" {
   type    = string
   default = "us-east-2"
 }
