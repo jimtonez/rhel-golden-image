@@ -12,6 +12,26 @@ variable "ami_prefix" {
   default = "rhel-9-base"
 }
 
+variable "aws_region" {
+  type    = string
+  default = "us-east-2"
+}
+
+variable "ami_filter" {
+  type    = string
+  default = ""
+}
+
+variable "ami_subnet_id" {
+  type    = string
+  default = ""
+}
+
+variable "ami_vpc_id" {
+  type    = string
+  default = ""
+}
+
 locals {
   timestamp = regex_replace(timestamp(), "[- TZ:]", "")
 }
@@ -19,7 +39,7 @@ locals {
 source "amazon-ebs" "rhel9_base" {
   ami_name      = "${var.ami_prefix}-${local.timestamp}"
   instance_type = "t2.small"
-  region        = "us-east-2"
+  region        = "${var.aws_region}"
   subnet_id     = "subnet-07b548e510fbc6e00"
   vpc_id        = "vpc-0e3737a7d61892856"
   source_ami_filter {

@@ -8,10 +8,10 @@ on:
 env:
   PRODUCT_VERSION: "latest"
   AWS_REGION: "us-east-2"
-  AMI_FILTER: "ami-0858136e05d24c9c8"
+  AMI_FILTER: ${{ secrets.AMI_FILTER }}
   AMI_PREFIX: "rhel-9-base"
-  AMI_SUBNET_ID: "subnet-07b548e510fbc6e00"
-  AMI_VPC_ID: "vpc-0e3737a7d61892856"
+  AMI_SUBNET_ID: ${{ secrets.AMI_SUBNET_ID }}
+  AMI_VPC_ID: ${{ secrets.AMI_VPC_ID }}
   OS_VERSION: "Red Hat Enterprise Linux 9"
 
 jobs:
@@ -49,4 +49,4 @@ jobs:
         run: packer validate ./rhel9_aws_base.pkr.hcl
 
       - name: Build Artifact
-        run: packer build -on-error=abort ./rhel9_aws_base.pkr.hcl
+        run: packer build -on-error=abort -var "aws_region=${{ env.AWS_REGION }}" -var "ami_filter=${{ env.AMI_FILTER }}" -var "ami_subnet_id=${{ env.AMI_SUBNET_ID }}" -var "ami_vpc_id=${{ env.AMI_VPC_ID }}" ./rhel9_aws_base.pkr.hcl
