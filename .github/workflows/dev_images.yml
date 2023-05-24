@@ -7,28 +7,46 @@ on:
 
 env:
   PRODUCT_VERSION: "latest"
+  AWS_REGION: "us-east-2"
+  AMI_FILTER: "ami-0858136e05d24c9c8"
+  AMI_PREFIX: "rhel-9-base"
+  AMI_SUBNET_ID: "subnet-07b548e510fbc6e00"
+  AMI_VPC_ID: "vpc-0e3737a7d61892856"
+  OS_VERSION: "Red Hat Enterprise Linux 9"
 
 jobs:
   packer:
     runs-on: ubuntu-latest
-    name: Run Packer
+    name: Build RHEL9 AMI
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup `packer`
-        uses: hashicorp/setup-packer@main
-        id: setup
+      - name: Install packer dependencies
+        run: |
+          pip install -r requirements.txt
+          curl -k https://releases.hashicorp.com/packer/1.8.7/packer_1.8.7_linux_amd64.zip --output packer.zip
+          unzip packer.zip && mv -f packer /usr/local/bin
+
+      - name: Install ansible roles
+        run: |
+          ansible-galaxy install RedHatOfficial.rhel9_cis
+          sed -i '/socket_file_exists.stdout_lines/d' /home/runner/.ansible/roles/RedHatOfficial.rhel9_cis/tasks/main.yml
+      
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          version: ${{ env.PRODUCT_VERSION }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: us-east-2
 
       - name: Run `packer init`
         id: init
-        run: "packer init ./rhel9_aws_base.json"
+        run: packer init ./rhel9_aws_base.pkr.hcl
 
       - name: Run `packer validate`
         id: validate
-        run: "packer validate ./rhel9_aws_base.json"
+        run: packer validate ./rhel9_aws_base.pkr.hcl
 
       - name: Build Artifact
-        run: packer build -on-error=abort ./rhel9_aws_base.json
+        run: packer build -on-error=abort ./rhel9_aws_base.pkr.hcl

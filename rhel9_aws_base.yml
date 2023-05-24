@@ -1,0 +1,8 @@
+- hosts: all
+  become: true
+  roles:
+     - { role: RedHatOfficial.rhel9_cis }
+  vars:
+    sudo_require_authentication: false
+    service_nfs_disabled: false
+    service_autofs_disabled: false
