@@ -12,6 +12,11 @@ variable "ami_prefix" {
   default = "rhel-9-base"
 }
 
+variable "ami_region" {
+  type    = string
+  default = "us-east-2"
+}
+
 locals {
   timestamp = regex_replace(timestamp(), "[- TZ:]", "")
 }
