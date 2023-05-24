@@ -1,15 +1,19 @@
 {
     "variables": {
       "aws_region": "{{ env `AWS_REGION` }}",
+      "aws_access_key": "{{ env `AWS_ACCESS_KEY` }}",
+      "aws_secret_key": "{{ env `AWS_SECRET_KEY` }}",
       "ami_filter": "{{ env `AMI_FILTER` }}",
       "ami_prefix": "{{ env `AMI_PREFIX` }}",
       "os_version": "{{ env `OS_VERSION` }}",
-      "secure_ip": "{{ env `SECURE_IP` }}"
+      "secure_ip": "{{ env `SECURE_IP` }}",
+      "ami_subnet_id": "{{ env `AMI_SUBNET_ID` }}",
+      "ami_vpc_id": "{{ env `AMI_VPC_ID` }}"
     },
     "provisioners": [
       {
         "type": "ansible",
-        "playbook_file": "rhel9_base.yml",
+        "playbook_file": "rhel9_aws_base.yml",
         "user": "ec2-user"
       }
     ],
@@ -17,17 +21,23 @@
       {
         "type": "amazon-ebs",
         "region": "{{ user `aws_region` }}",
+        "access_key": "{{ user `aws_access_key` }}",
+        "secret_key": "{{ user `aws_secret_key` }}",
+        "subnet_id": "{{ user `ami_subnet_id` }}",
+        "vpc_id": "{{ user `ami_vpc_id` }}",
         "associate_public_ip_address": "true",
         "instance_type": "t2.small",
         "ssh_username": "ec2-user",
+        "iam_instance_profile": "AmazonEC2RoleforSSM",
+        "communicator": "ssh",
+        "ssh_interface": "session_manager",
         "encrypt_boot": true,
-        "temporary_security_group_source_cidr": "{{ user `secure_ip` }}",
         "source_ami_filter": {
           "filters": {
             "architecture": "x86_64",
             "virtualization-type": "hvm",
             "root-device-type": "ebs",
-            "name": "{{ user `ami_filter` }}"
+            "image-id": "{{ user `ami_filter` }}"
           },
           "owners": ["amazon"],
           "most_recent": true
