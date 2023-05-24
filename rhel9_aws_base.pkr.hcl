@@ -19,7 +19,7 @@ locals {
 source "amazon-ebs" "rhel9_base" {
   ami_name      = "${var.ami_prefix}-${local.timestamp}"
   instance_type = "t2.small"
-  region        = "us-east-2"
+  region        = "${var.aws_region}"
   subnet_id     = "subnet-07b548e510fbc6e00"
   vpc_id        = "vpc-0e3737a7d61892856"
   source_ami_filter {

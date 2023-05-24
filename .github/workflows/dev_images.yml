@@ -49,4 +49,4 @@ jobs:
         run: packer validate ./rhel9_aws_base.pkr.hcl
 
       - name: Build Artifact
-        run: packer build -on-error=abort ./rhel9_aws_base.pkr.hcl
+        run: packer build -on-error=abort -var "aws_region=${{ env.AWS_REGION }}" ./rhel9_aws_base.pkr.hcl
