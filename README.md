@@ -37,3 +37,31 @@ Key | Description | Required | Default
 `aws_sg_id` | The Security Group ID for the EC2 private subnet | `true` | `null`
 `aws_subnet_id` | The Subnet ID for the EC2 private subnet | `true` | `null`
 `aws_vpc_id`| The VPC ID for the EC2 private subnet | `true` | `null`
+
+## Example
+
+```hcl
+source "amazon-ebs" "rhel9_cis" {
+  ami_name      = "${var.ami_prefix}-${local.timestamp}"
+  instance_type = "t2.small"
+  region        = "${var.aws_region}"
+  subnet_id     = "${var.aws_subnet_id}"
+  vpc_id        = "${var.aws_vpc_id}"
+  source_ami_filter {
+    filters = {
+      image-id            = "${var.ami_image_id}"
+      root-device-type    = "ebs"
+      virtualization-type = "hvm"
+    }
+    most_recent = true
+    owners      = ["amazon"]
+  }
+  security_group_id       = "${var.aws_sg_id}"
+  ssh_username            = "ec2-user"
+  temporary_key_pair_type = "ed25519"
+  ssh_interface           = "public_ip"
+  pause_before_ssm        = "2m"
+  communicator            = "ssh"
+  iam_instance_profile    = "${var.aws_role_name}"
+}
+```
