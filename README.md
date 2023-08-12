@@ -27,4 +27,7 @@ This project allows for granular control over baseline and security relevant con
 
 The desired state for a secure by design RHEL golden image consists of a standard baseline pre-configured with organizational, security, and application (optional) specific configurations:
 
+## Parameters
+Key | Value | Required | Description
+:---:|:-----:|:--------:|:-----------:
 
