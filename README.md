@@ -38,9 +38,13 @@ Key | Description | Required | Default
 `aws_subnet_id` | The Subnet ID for the EC2 private subnet | `true` | `null`
 `aws_vpc_id`| The VPC ID for the EC2 private subnet | `true` | `null`
 
-## Example
-
+## Examples
+Example rhel ami source block as defined in rhel9_aws_cis.pkr.hcl
 ```hcl
+locals {
+  timestamp = regex_replace(timestamp(), "[- TZ:]", "")
+}
+
 source "amazon-ebs" "rhel9_cis" {
   ami_name      = "${var.ami_prefix}-${local.timestamp}"
   instance_type = "t2.small"
@@ -63,5 +67,31 @@ source "amazon-ebs" "rhel9_cis" {
   pause_before_ssm        = "2m"
   communicator            = "ssh"
   iam_instance_profile    = "${var.aws_role_name}"
+}
+```
+Example rhel ami build block with the ansible provisioner as defined in rhel9_aws_cis.pkr.hcl
+```hcl
+build {
+  name    = "rhel9-cis"
+  sources = [
+    "source.amazon-ebs.rhel9_cis"
+  ]
+
+  provisioner "shell" {
+    inline = [
+      "echo Provisioning RHEL 9 CIS AMI",
+      "sudo dnf update -y"
+    ]
+  }
+
+  provisioner "ansible" {
+    playbook_file   = "./rhel9_aws_cis.yml"
+    user            = "ec2-user"
+    use_proxy       =  false
+    extra_arguments = [ 
+        "-vv",
+    ]
+  }
+
 }
 ```
