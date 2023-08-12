@@ -1,1 +1,1 @@
-# packer-ansible-demo
+# RHEL 9 AMI Quick Start Guide
