@@ -12,11 +12,12 @@ The following components are required for enabling programmatic access to the ta
 
 ### AWS
 
-- Existing [AWS](https://aws.amazon.com/) account
-- The `vpc_id` for an exisitng AWS VPC
-- The `subnet_id` for the ec2 subnet
-- IAM access / secret keypair
-- IAM instance profile
+- An existing [AWS](https://aws.amazon.com/) account
+- A properly configured VPC
+- A properly configured EC2 subnet
+- A security group that allows temporary SSH connectivity from github
+- An IAM access / secret keypair
+- An IAM instance profile
 
 ## Workflow
 This project allows for granular control over baseline and security relevant configurations through the use of certified ansible content. The ansible playbooks will harden a RHEL instance to meet industry compliance standards outlined in the CIS Benchmark for Red Hat Enterprise Linux:
