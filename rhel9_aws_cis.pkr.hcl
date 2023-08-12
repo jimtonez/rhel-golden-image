@@ -12,11 +12,6 @@ variable "ami_image_id" {
   default = ""
 }
 
-variable "ami_filter" {
-  type    = string
-  default = ""
-}
-
 variable "ami_prefix" {
   type    = string
   default = ""
@@ -51,7 +46,7 @@ locals {
   timestamp = regex_replace(timestamp(), "[- TZ:]", "")
 }
 
-source "amazon-ebs" "rhel9_base" {
+source "amazon-ebs" "rhel9_cis" {
   ami_name      = "${var.ami_prefix}-${local.timestamp}"
   instance_type = "t2.small"
   region        = "${var.aws_region}"
@@ -76,20 +71,20 @@ source "amazon-ebs" "rhel9_base" {
 }
 
 build {
-  name    = "rhel9-base"
+  name    = "rhel9-cis"
   sources = [
-    "source.amazon-ebs.rhel9_base"
+    "source.amazon-ebs.rhel9_cis"
   ]
 
   provisioner "shell" {
     inline = [
-      "echo Provisioning RHEL9 Base AMI",
+      "echo Provisioning RHEL 9 CIS AMI",
       "sudo dnf update -y"
     ]
   }
 
   provisioner "ansible" {
-    playbook_file   = "./rhel9_aws_base.yml"
+    playbook_file   = "./rhel9_aws_cis.yml"
     user            = "ec2-user"
     use_proxy       =  false
     extra_arguments = [ 
