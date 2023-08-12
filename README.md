@@ -11,8 +11,13 @@ This project provides instructions on how to build RHEL golden images using Pack
 The following components are required for enabling programmatic access to the target environments:
 
 ### AWS
+
 - Existing [AWS](https://aws.amazon.com/) account
 - The `vpc_id` for an exisitng AWS VPC
 - The `subnet_id` for the ec2 subnet
 - IAM access / secret keypair
 - IAM instance profile
+
+## Workflow
+This project allows for granular control over baseline and security relevant configurations through the use of certified ansible content. These ansible playbooks will harden a RHEL instance to meet industry complaince standards outlined in the CIS Benchmark:
+[CIS Benchmark | Red Hat Enterprise Linux](https://www.cisecurity.org/benchmark/red_hat_linux)
