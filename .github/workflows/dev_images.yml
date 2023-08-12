@@ -7,11 +7,14 @@ on:
 
 env:
   PRODUCT_VERSION: "latest"
-  AWS_REGION: "us-east-2"
+  AMI_IMAGE_ID: ""
   AMI_FILTER: ${{ secrets.AMI_FILTER }}
-  AMI_PREFIX: "rhel-9-base"
-  AMI_SUBNET_ID: ${{ secrets.AMI_SUBNET_ID }}
-  AMI_VPC_ID: ${{ secrets.AMI_VPC_ID }}
+  AMI_PREFIX: "rhel-9-cis"
+  AWS_REGION: "us-east-2"
+  AWS_ROLE_NAME: "AWSPackerSSMRole"
+  AWS_SG_ID: ${{ secrets.AWS_SG_ID }}
+  AWS_SUBNET_ID: ${{ secrets.AWS_SUBNET_ID }}
+  AWS_VPC_ID: ${{ secrets.AWS_VPC_ID }}
   OS_VERSION: "Red Hat Enterprise Linux 9"
 
 jobs:
@@ -49,4 +52,4 @@ jobs:
         run: packer validate ./rhel9_aws_base.pkr.hcl
 
       - name: Build Artifact
-        run: packer build -on-error=abort -var "aws_region=${{ env.AWS_REGION }}" -var "ami_filter=${{ env.AMI_FILTER }}" -var "ami_subnet_id=${{ env.AMI_SUBNET_ID }}" -var "ami_vpc_id=${{ env.AMI_VPC_ID }}" ./rhel9_aws_base.pkr.hcl
+        run: packer build -on-error=abort -var "ami_image_id=${{ env.ami_image_id }}" -var "ami_filter=${{ env.AMI_FILTER }}" -var "ami_prefix=${{ env.AMI_PREFIX }}" -var "aws_region=${{ env.AWS_REGION }}" -var "aws_role_name=${{ env.AWS_ROLE_NAME }}" -var "aws_subnet_id=${{ env.AWS_SUBNET_ID }}" -var "aws_vpc_id=${{ env.AWS_VPC_ID }}" ./rhel9_aws_base.pkr.hcl
