@@ -31,7 +31,7 @@ The desired state for a secure by design RHEL golden image consists of a standar
 Key | Description | Required | Default
 :---:|:-----:|:--------:|:-----------:
 `ami_image_id` | The Image ID of the rhel ami base image| `true` | `null`
-`ami_prefix` | The prefix string for the golden image name | `true` | `rhel-9-cis`
+`ami_prefix` | The prefix string for the golden image name | `true` | `rhel9-cis`
 `aws_access_key` | The AWS Access Key ID of the IAM User  | `true` | `null`
 `aws_region` | The AWS Region of the EC2 VPC Subnet | `true` | `us-east-2`
 `aws_role_name` | The role name of the iam instance profile | `true` | `AWSPackerSSMRole`
