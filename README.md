@@ -2,10 +2,7 @@
 
 ![RHEL](https://www.redhat.com/rhdc/managed-files/rhel-product-screen-v2-726x436.png)
 
-This project provides instructions on how to build RHEL golden images using Packer and Ansible. For instructions on how to deploy RHEL using the image builder, refer to the following documentation:
-
-## RHEL Image Builder
-[RHEL Image Builder](https://www.redhat.com/en/topics/linux/what-is-an-image-builder)
+This project provides instructions on how to build RHEL golden images using Packer and Ansible. For instructions on how to deploy RHEL using the image builder, refer to the following documentation: [RHEL Image Builder](https://www.redhat.com/en/topics/linux/what-is-an-image-builder)
 
 ## Prerequisites
 The following components are required for enabling programmatic access to the target environments:
