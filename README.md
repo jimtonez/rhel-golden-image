@@ -8,7 +8,7 @@ This project provides instructions on how to build RHEL golden images using Pack
 [RHEL Image Builder](https://www.redhat.com/en/topics/linux/what-is-an-image-builder)
 
 ## Prerequisites
-The following components are required for to enable programmatic access to the target environments:
+The following components are required for enabling programmatic access to the target environments:
 
 ### AWS
 - Existing [AWS](https://aws.amazon.com/) account
