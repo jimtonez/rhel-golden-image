@@ -33,7 +33,7 @@ Category | Description
 |:---|:-----
 baseline | basic configurations common to all endpoints on the network inlcuding ssh, sudoers, local groups, authorized keys, proxy settings, endpoint protection, and logging agents.
 security | OS accredidation and industry specific security configurations. For example, CIS, STIG, HIPAA, and other industry standard compliance automation and auditing tools.
-application | Allow servers provisioned with the ami to join auto-scaling groups pre-configured with application components.
+application | Application specific configurations that enable server to come pre-packaged with application components. Necessary for auto-scaling groups.
 
 ## Parameters
 Key | Description | Required | Default
