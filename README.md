@@ -10,8 +10,8 @@ The following components are required for enabling programmatic access to the ta
 ### AWS
 
 - An existing [AWS](https://aws.amazon.com/) account
-- A properly configured VPC and EC2 subnet
-- A security group that allows temporary SSH connectivity from github
+- A VPC and EC2 subnet
+- A security group for SSH
 - An IAM access / secret keypair
 - An IAM instance profile
 
@@ -34,6 +34,17 @@ Category | Description
 baseline | basic configurations common to all endpoints on the network inlcuding ssh, sudoers, local groups, authorized keys, proxy settings, endpoint protection, and logging agents.
 security | OS accredidation and industry specific security configurations. For example, CIS, STIG, HIPAA, and other industry standard compliance automation and auditing tools.
 application | Application specific configurations that enable servers to join networks pre-packaged with functional components. Necessary for auto-scaling groups.
+
+```yaml
+# Example playbook that executes three roles in a sequence:
+- hosts: all
+  become: true
+  roles:
+     - { role: ansible-role-<baseline> }
+     - { role: RedHatOfficial.rhel9_cis }
+     - { role: ansible-role-<application> }
+```
+This project's workflow will only apply the RHEL 9 CIS role as part of the packer ansible provisioner. For recommendations on defining baseline configurations, refer to the following knowledge base article.
 
 ## Parameters
 Key | Description | Required | Default
