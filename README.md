@@ -30,11 +30,11 @@ A RHEL golden image should include all of the relevant baseline, security, and a
 Ansible playbooks enable consistant application of golden configurations throughout the lifecyle of the OS. There are three basic category of golden image ansible playbooks:
 
 Category | Description
-|:---:|:---|:-----
+|:---|:-----
 baseline | apply common configurations across all endpoints on a network and meet the most basic requirements for access and authorization. Revelant configurations include the ssh daemon, sudoers, local groups, authorized keys, 
-proxy settings, endpoint protection, and logging agents. |
-security | apply and audit the OS accredidation and industry specific security configurations. For example, CIS, STIG, HIPAA, and other industry standard compliance automation and auditing tools. |
-application | Allows servers provisioned with the ami to join auto-scaling groups pre-configured with application components |
+proxy settings, endpoint protection, and logging agents.
+security | apply and audit the OS accredidation and industry specific security configurations. For example, CIS, STIG, HIPAA, and other industry standard compliance automation and auditing tools.
+application | Allows servers provisioned with the ami to join auto-scaling groups pre-configured with application components
 
 ## Parameters
 Key | Description | Required | Default
