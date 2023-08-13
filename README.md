@@ -20,7 +20,7 @@ The following components are required for enabling programmatic access to the ta
 This project allows for granular control over baseline and security relevant configurations through the use of certified ansible content. The ansible playbooks will harden a RHEL instance to meet industry compliance standards outlined in the CIS Benchmark for Red Hat Enterprise Linux:
 [CIS Benchmark | Red Hat Enterprise Linux](https://www.cisecurity.org/benchmark/red_hat_linux)
 
-![Packer Ansible Workflow](https://github.com/atriumgrid/knowledge-base/blob/dev/packer-ansible-workflow.drawio.png)
+![Packer Ansible Workflow](https://github.com/atriumgrid/knowledge-base/blob/dev/packer-ansible.drawio.png)
 
 ### Ansible roles
 - [CIS Red Hat Enterprise Linux 9 Benchmark | Level 2 - Server](https://github.com/RedHatOfficial/ansible-role-rhel9-cis)
