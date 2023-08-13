@@ -44,11 +44,11 @@ jobs:
 
       - name: Run `packer init`
         id: init
-        run: packer init ./rhel9_aws_base.pkr.hcl
+        run: packer init ./rhel9_aws_cis.pkr.hcl
 
       - name: Run `packer validate`
         id: validate
-        run: packer validate ./rhel9_aws_base.pkr.hcl
+        run: packer validate ./rhel9_aws_cis.pkr.hcl
 
       - name: Build Artifact
-        run: packer build -on-error=abort -var "ami_image_id=${{ env.ami_image_id }}" -var "ami_prefix=${{ env.AMI_PREFIX }}" -var "aws_region=${{ env.AWS_REGION }}" -var "aws_role_name=${{ env.AWS_ROLE_NAME }}" -var "aws_subnet_id=${{ env.AWS_SUBNET_ID }}" -var "aws_vpc_id=${{ env.AWS_VPC_ID }}" ./rhel9_aws_base.pkr.hcl
+        run: packer build -on-error=abort -var "ami_image_id=${{ env.ami_image_id }}" -var "ami_prefix=${{ env.AMI_PREFIX }}" -var "aws_region=${{ env.AWS_REGION }}" -var "aws_role_name=${{ env.AWS_ROLE_NAME }}" -var "aws_subnet_id=${{ env.AWS_SUBNET_ID }}" -var "aws_vpc_id=${{ env.AWS_VPC_ID }}" ./rhel9_aws_cis.pkr.hcl
