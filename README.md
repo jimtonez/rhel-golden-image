@@ -1,6 +1,6 @@
 # RHEL Golden Image Quick Start Guide
 
-![RHEL](https://www.redhat.com/rhdc/managed-files/rhel-product-screen-v2-726x436.png)
+![RHEL](https://github.com/atriumgrid/knowledge-base/blob/dev/rhel.drawio.png)
 
 This project provides instructions on how to build RHEL golden images using Packer and Ansible. For instructions on how to deploy RHEL using the image builder, refer to the following documentation: [RHEL Image Builder](https://www.redhat.com/en/topics/linux/what-is-an-image-builder)
 
