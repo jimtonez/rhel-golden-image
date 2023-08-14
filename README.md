@@ -24,16 +24,18 @@ This project allows for granular control over baseline and security relevant con
 ### Ansible roles
 - [CIS Red Hat Enterprise Linux 9 Benchmark | Level 2 - Server](https://github.com/RedHatOfficial/ansible-role-rhel9-cis)
 
-A RHEL golden image should include all of the relevant baseline, security, and application (optional) specific configurations and packages necessary to be secure by design in production and development environments. The use of ansible playbooks allows for graular control over these configurations.
+A RHEL golden image consists of common baseline settings, security, and application (optional) specific configurations. Ansible playbooks can be used to manage these dependencies with granular control.
 
-### Playbook layering
-Ansible playbooks enable consistant application of golden configurations throughout the lifecyle of the OS. There are three basic category of golden image ansible playbooks:
+### Role layering
+Ansible playbooks contain roles that complete a specific automation function and provide consistant application of golden configurations throughout the lifecyle of the OS. There are three basic category of golden image ansible roles:
 
 Category | Description
 |:---|:-----
-baseline | basic configurations common to all endpoints on the network inlcuding ssh, sudoers, local groups, authorized keys, proxy settings, endpoint protection, and logging agents.
+baseline | organization specific configurations common to all endpoints on the network. These include ssh, sudoers, local groups, authorized keys, proxy settings, endpoint protection, and logging agents.
 security | OS accredidation and industry specific security configurations. For example, CIS, STIG, HIPAA, and other industry standard compliance automation and auditing tools.
 application | Application specific configurations that enable servers to join networks pre-packaged with functional components. Necessary for auto-scaling groups.
+
+At build time, golden image roles will have dependencies that require them to be applied in a specific order. Layering the roles can help resolve baseline dependencies before easing in security controls and application configurations. 
 
 ```yaml
 # Example playbook that executes three roles in a sequence:
@@ -44,7 +46,8 @@ application | Application specific configurations that enable servers to join ne
      - { role: RedHatOfficial.rhel9_cis }
      - { role: ansible-role-<application> }
 ```
-This project's workflow will only apply the RHEL 9 CIS role as part of the packer ansible provisioner. For recommendations on defining baseline configurations, refer to the following knowledge base article.
+
+This project's workflow will apply the RHEL 9 CIS role as part of the packer ansible provisioner. Applying additional roles is optional for this demo. For recommendations on defining baseline configurations, refer to the following knowledge base article.
 
 ## Parameters
 Key | Description | Required | Default
