@@ -7,27 +7,37 @@ packer {
   }
 }
 
+variable "ami_image_id" {
+  type    = string
+  default = ""
+}
+
 variable "ami_prefix" {
   type    = string
-  default = "rhel-9-base"
+  default = ""
 }
 
 variable "aws_region" {
   type    = string
-  default = "us-east-2"
+  default = ""
 }
 
-variable "ami_filter" {
+variable "aws_role_name" {
   type    = string
   default = ""
 }
 
-variable "ami_subnet_id" {
+variable "aws_sg_id" {
   type    = string
   default = ""
 }
 
-variable "ami_vpc_id" {
+variable "aws_subnet_id" {
+  type    = string
+  default = ""
+}
+
+variable "aws_vpc_id" {
   type    = string
   default = ""
 }
@@ -36,45 +46,45 @@ locals {
   timestamp = regex_replace(timestamp(), "[- TZ:]", "")
 }
 
-source "amazon-ebs" "rhel9_base" {
+source "amazon-ebs" "rhel9_cis" {
   ami_name      = "${var.ami_prefix}-${local.timestamp}"
   instance_type = "t2.small"
   region        = "${var.aws_region}"
-  subnet_id     = "subnet-07b548e510fbc6e00"
-  vpc_id        = "vpc-0e3737a7d61892856"
+  subnet_id     = "${var.aws_subnet_id}"
+  vpc_id        = "${var.aws_vpc_id}"
   source_ami_filter {
     filters = {
-      image-id            = "ami-0858136e05d24c9c8"
+      image-id            = "${var.ami_image_id}"
       root-device-type    = "ebs"
       virtualization-type = "hvm"
     }
     most_recent = true
     owners      = ["amazon"]
   }
-  security_group_id       = "sg-0398f640773fcbae0"
+  security_group_id       = "${var.aws_sg_id}"
   ssh_username            = "ec2-user"
   temporary_key_pair_type = "ed25519"
   ssh_interface           = "public_ip"
   pause_before_ssm        = "2m"
   communicator            = "ssh"
-  iam_instance_profile    = "AWSPackerSSMRole"
+  iam_instance_profile    = "${var.aws_role_name}"
 }
 
 build {
-  name    = "rhel9-base"
+  name    = "rhel9-cis"
   sources = [
-    "source.amazon-ebs.rhel9_base"
+    "source.amazon-ebs.rhel9_cis"
   ]
 
   provisioner "shell" {
     inline = [
-      "echo Provisioning RHEL9 Base AMI",
+      "echo Provisioning RHEL 9 CIS AMI",
       "sudo dnf update -y"
     ]
   }
 
   provisioner "ansible" {
-    playbook_file   = "./rhel9_aws_base.yml"
+    playbook_file   = "./rhel9_aws_cis.yml"
     user            = "ec2-user"
     use_proxy       =  false
     extra_arguments = [ 
